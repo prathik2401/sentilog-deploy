@@ -2,8 +2,8 @@
 const nextConfig = {
     typescript: {
         ignoreBuildErrors: true,
-    }
-    esline: {
+    },
+    eslint: {
         ignoreBuildErrors: true,
         ignoreDuringBuilds: true,
     }
