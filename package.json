@@ -1,0 +1,40 @@
+{
+  "name": "sentilog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^5.1.3",
+    "@langchain/core": "^0.2.8",
+    "@langchain/google-genai": "^0.0.20",
+    "@prisma/client": "^5.15.1",
+    "langchain": "^0.2.5",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "recharts": "^2.12.7",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "jsdom": "^24.1.0",
+    "postcss": "^8",
+    "prisma": "^5.15.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5",
+    "vitest": "^1.6.0"
+  }
+}

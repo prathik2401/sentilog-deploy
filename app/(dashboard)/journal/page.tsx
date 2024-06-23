@@ -1,0 +1,44 @@
+import LogCard from '@/components/LogCard'
+import NewLogCard from '@/components/NewLogCard'
+import Question from '@/components/Question'
+import { analyze } from '@/utils/ai'
+import { getUserByClerkId } from '@/utils/auth'
+import { prisma } from '@/utils/db'
+import Link from 'next/link'
+
+const getlogs = async () => {
+  const user = await getUserByClerkId()
+  const logs = await prisma.journalLog.findMany({
+    where: {
+      userId: user.id,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  })
+
+  return logs
+}
+
+const JournalPage = async () => {
+  const logs = await getlogs()
+
+  return (
+    <div className="p-10 bg-zinc-900 h-full">
+      <h2 className="text-3xl mb-8 text-white font-semibold">Logs</h2>
+      <div className="w-full my-8">
+        <Question />
+      </div>
+      <div className="grid grid-cols-3 gap-4 p-10">
+        <NewLogCard />
+        {logs.map((entry) => (
+          <Link href={`/journal/${entry.id}`} key={entry.id}>
+            <LogCard entry={entry} />
+          </Link>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default JournalPage
