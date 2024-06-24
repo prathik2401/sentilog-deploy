@@ -1,5 +1,6 @@
 "use client";
 import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip } from "recharts";
+import React, { useState, useEffect } from "react";
 
 const CustomTooltip = ({ payload, label, active }) => {
   const dateLabel = new Date(label).toLocaleString("en-us", {
@@ -31,15 +32,41 @@ const CustomTooltip = ({ payload, label, active }) => {
 };
 
 const HistoryChart = ({ data }) => {
+  const [chartProps, setChartProps] = useState({
+    strokeWidth: 2,
+    activeDotRadius: 8,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setChartProps({
+          strokeWidth: 1,
+          activeDotRadius: 4,
+        });
+      } else {
+        setChartProps({
+          strokeWidth: 2,
+          activeDotRadius: 8,
+        });
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initialize on mount
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <ResponsiveContainer width="100%" height="100%" style={{ padding: "1%" }}>
-      <LineChart width={300} height={100} data={data}>
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart data={data}>
         <Line
           type="monotone"
           dataKey="sentimentScore"
           stroke="#00E396"
-          strokeWidth={2}
-          activeDot={{ r: 8 }}
+          strokeWidth={chartProps.strokeWidth}
+          activeDot={{ r: chartProps.activeDotRadius }}
         />
         <XAxis dataKey="updatedAt" stroke="#9e9e9e" />
         <Tooltip content={<CustomTooltip />} />

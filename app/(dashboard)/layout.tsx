@@ -39,7 +39,9 @@ const DashboardLayout = ({ children }) => {
         <ul>
           {links.map((link) => (
             <li key={link.href} className="px-2 py-6 text-xl">
-              <Link href={link.href}>{link.label}</Link>
+              <Link href={link.href} onClick={toggleMenu}>
+                {link.label}
+              </Link>
             </li>
           ))}
         </ul>
