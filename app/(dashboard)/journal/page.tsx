@@ -19,9 +19,19 @@ const getlogs = async () => {
   return logs;
 };
 
+const getAnalysis = async () => {
+  const user = await getUserByClerkId();
+  const analysis = await prisma.analysis.findMany({
+    where: {
+      userId: user.id,
+    },
+  });
+  return analysis;
+};
+
 const JournalPage = async () => {
   const logs = await getlogs();
-
+  const analysis = await getAnalysis();
   return (
     <div className="p-10 bg-zinc-900 h-full">
       <h2 className="text-3xl mb-8 text-white font-semibold">Logs</h2>
@@ -32,7 +42,7 @@ const JournalPage = async () => {
         <NewLogCard />
         {logs.map((entry) => (
           <Link href={`/journal/${entry.id}`} key={entry.id}>
-            <LogCard entry={entry} />
+            <LogCard entry={entry} analysis={analysis} />
           </Link>
         ))}
       </div>
