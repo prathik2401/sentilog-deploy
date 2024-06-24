@@ -70,7 +70,7 @@ export const qa = async (question, logs) => {
     const embeddings = new GoogleGenerativeAIEmbeddings()
     const store = await MemoryVectorStore.fromDocuments(docs, embeddings)
     const relevantDocs = await store.similaritySearch(question)
-    const modifiedQuestion = `Please answer the following question in less than 20 words, and respond in second person: ${question}. don't use the words refined answer!`;
+    const modifiedQuestion = `Please answer the following question in less than 20 words, and respond in second person: ${question}. don't use the words refined answer, and dont tell me the count of words!`;
     const res = await chain.invoke({
         input_documents: relevantDocs,
         question: modifiedQuestion,

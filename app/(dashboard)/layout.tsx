@@ -26,10 +26,10 @@ const DashboardLayout = ({ children }) => {
       <aside
         className={`absolute w-[200px] top-0 ${
           isMenuOpen ? "left-0" : "-left-full"
-        } md:left-0 h-full border-r border-black/10 text-center items-center bg-black text-white pt-10 transition-all duration-300 ease-in-out`}
+        } md:left-0 h-full border-r border-black/10 text-center items-center bg-black text-white pt-10 md:transition-none transition-all duration-300 ease-in-out`}
       >
         {isMenuOpen && (
-          <div className="absolute top-0 right-0 p-4">
+          <div className="md:hidden absolute top-0 right-0 p-4">
             <button onClick={toggleMenu} style={{ color: "white" }}>
               ✕
             </button>
@@ -47,9 +47,9 @@ const DashboardLayout = ({ children }) => {
         </ul>
       </aside>
       <div
-        className={`transition-all duration-300 ease-in-out ${
-          isMenuOpen ? "ml-0 md:ml-[200px]" : "ml-0 md:ml-[200px]"
-        } h-full`}
+        className={`md:ml-[200px] ${
+          isMenuOpen ? "ml-0" : "ml-0"
+        } h-full md:transition-none transition-all duration-300 ease-in-out`}
       >
         <header className="h-[60px] border-b border-black/10">
           <div className="h-full w-full px-6 flex items-center justify-end">

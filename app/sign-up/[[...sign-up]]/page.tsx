@@ -1,10 +1,9 @@
-import { SignUp } from '@clerk/nextjs'
+import { SignUp } from "@clerk/nextjs";
 
 export default function SignUpPage() {
   return (
-    <SignUp
-      redirectUrl="/new-user"
-      afterSignUpUrl="/new-user"
-    />
-  )
+    <div className="flex items-center justify-center h-screen">
+      <SignUp redirectUrl="/new-user" afterSignUpUrl="/new-user" />
+    </div>
+  );
 }
