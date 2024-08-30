@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@langchain/google-genai": "^0.0.23",
-    "@clerk/nextjs": "^5.2.12",
+    "@clerk/nextjs": "^5.2.14",
     "@langchain/core": "^0.2.19",
     "langchain": "^0.2.12",
    "@prisma/client": "^5.18.0",
